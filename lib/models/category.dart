@@ -34,6 +34,7 @@ class Category extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      clipBehavior: Clip.antiAlias,
       child: Padding(
         padding: EdgeInsets.all(kDefaultPadding / 2),
         child: Column(
@@ -42,7 +43,7 @@ class Category extends StatelessWidget {
               this.title,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            Image.network(this.imageUrl),
+            Expanded(child: Image.network(this.imageUrl)),
           ],
         ),
       ),
