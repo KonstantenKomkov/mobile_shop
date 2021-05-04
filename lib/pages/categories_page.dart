@@ -62,11 +62,29 @@ class _CategoriesPageState extends State<CategoryPage> {
                             ),
                           );
                         } else {
-                          return ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              itemCount: snapshot.data.length,
-                              itemBuilder: (BuildContext context, int index) =>
-                                  snapshot.data[index]);
+                          return Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: kDefaultPadding / 2),
+                              child: GridView.builder(
+                                itemCount: snapshot.data.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: kDefaultPadding / 2,
+                                  crossAxisSpacing: kDefaultPadding / 2,
+                                ),
+                                itemBuilder:
+                                    (BuildContext context, int index) =>
+                                        snapshot.data[index],
+                              ),
+                            ),
+                          );
+                          // return ListView.builder(
+                          //     scrollDirection: Axis.vertical,
+                          //     itemCount: snapshot.data.length,
+                          //     itemBuilder: (BuildContext context, int index) =>
+                          //         snapshot.data[index]);
                         }
                       }),
                 ),
