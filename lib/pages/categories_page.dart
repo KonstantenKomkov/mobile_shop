@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop/helpers/queries.dart';
 import 'package:shop/models/category.dart';
+import 'package:shop/models/menu.dart';
 import 'package:shop/helpers/constants.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -51,6 +52,7 @@ class _CategoriesPageState extends State<CategoryPage> {
                     ),
                   ),
                 ),
+                Menu(),
                 Expanded(
                   child: FutureBuilder(
                       future: _getCategory(),
@@ -80,11 +82,6 @@ class _CategoriesPageState extends State<CategoryPage> {
                               ),
                             ),
                           );
-                          // return ListView.builder(
-                          //     scrollDirection: Axis.vertical,
-                          //     itemCount: snapshot.data.length,
-                          //     itemBuilder: (BuildContext context, int index) =>
-                          //         snapshot.data[index]);
                         }
                       }),
                 ),
