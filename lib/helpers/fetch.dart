@@ -23,7 +23,7 @@ class FetchHelper {
       }
       return;
     } else {
-      print(response.statusCode);
+      throw Exception('Error ${response.reasonPhrase}');
     }
   }
 }
