@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:shop/helpers/constants.dart';
 
-class Product extends StatelessWidget {
+class Product {
   final int productId;
   final String title;
   final String productDescription;
@@ -24,41 +23,15 @@ class Product extends StatelessWidget {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     var product = Product(
-      productId: json['productId'],
-      title: json['title'],
-      productDescription: json['productDescription'],
-      price: json['price'],
-      rating: json['rating'],
-      imageUrl: json['imageUrl'],
-      images: json['images'],
-      isAvailableForSale: json['isAvailableForSale'],
+      productId: json['productId'] as int,
+      title: json['title'] as String,
+      productDescription: json['productDescription'] as String,
+      price: json['price'] as num,
+      rating: json['rating'] as String,
+      imageUrl: json['imageUrl'] as String,
+      images: json['images'] as List,
+      isAvailableForSale: json['isAvailableForSale'] as int,
     );
     return product;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: EdgeInsets.all(kDefaultPadding / 2),
-        child: Column(
-          children: [
-            Text(
-              this.title,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            Image.network(this.imageUrl),
-            Container(
-              padding: EdgeInsets.only(top: kDefaultPadding / 2),
-              alignment: Alignment.centerRight,
-              child: Text(
-                'Цена: ${this.price} руб.',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }

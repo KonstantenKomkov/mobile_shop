@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:shop/helpers/constants.dart';
 
-class Category extends StatelessWidget {
+class Category {
   final int categoryId;
   final String title;
   final String imageUrl;
@@ -21,32 +20,13 @@ class Category extends StatelessWidget {
 
   factory Category.fromJson(Map<String, dynamic> json) {
     var category = Category(
-      categoryId: json['categoryId'],
-      title: json['title'],
-      imageUrl: json['imageUrl'],
-      hasSubcetegories: json['hasSubcetegories'],
-      fullName: json['fullName'],
-      categoryDescription: json['categoryDescription'],
+      categoryId: json['categoryId'] as int,
+      title: json['title'] as String,
+      imageUrl: json['imageUrl'] as String,
+      hasSubcetegories: json['hasSubcetegories'] as int,
+      fullName: json['fullName'] as String,
+      categoryDescription: json['categoryDescription'] as String,
     );
     return category;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      child: Padding(
-        padding: EdgeInsets.all(kDefaultPadding / 2),
-        child: Column(
-          children: [
-            Text(
-              this.title,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            Expanded(child: Image.network(this.imageUrl)),
-          ],
-        ),
-      ),
-    );
   }
 }
