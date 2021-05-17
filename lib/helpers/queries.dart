@@ -5,7 +5,7 @@ import 'package:shop/models/category.dart';
 const shopUrl = "ostest.whitetigersoft.ru";
 
 class DataFetch {
-  Future<dynamic> getProduct() async {
+  Future<List<Product>> getProduct() async {
     FetchHelper fetchData =
         new FetchHelper(shopUrl, '/api/common/product/list');
 
@@ -16,7 +16,7 @@ class DataFetch {
     return products;
   }
 
-  Future<dynamic> getCategory() async {
+  Future<List<Category>> getCategory() async {
     FetchHelper fetchData =
         new FetchHelper(shopUrl, '/api/common/category/list');
 
