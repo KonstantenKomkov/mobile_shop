@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-
 class Category {
   final int categoryId;
   final String title;
@@ -10,12 +7,12 @@ class Category {
   final String categoryDescription;
 
   Category({
-    @required this.categoryId,
-    @required this.title,
-    @required this.imageUrl,
-    @required this.hasSubcetegories,
-    @required this.fullName,
-    @required this.categoryDescription,
+    this.categoryId,
+    this.title,
+    this.imageUrl,
+    this.hasSubcetegories,
+    this.fullName,
+    this.categoryDescription,
   });
 
   factory Category.fromJson(Map<String, dynamic> json) {

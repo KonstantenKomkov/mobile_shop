@@ -7,6 +7,7 @@ class FetchHelper {
   final String path;
   FetchHelper(this.url, this.path);
 
+  //TODO: add optional parameters for request
   Future<dynamic> getData() async {
     var uri = Uri.http(url, path, {'appKey': shopApiKey});
     http.Response response = await http.get(uri);

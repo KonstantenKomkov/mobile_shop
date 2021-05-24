@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-
 class Product {
   final int productId;
   final String title;
@@ -12,14 +9,14 @@ class Product {
   final int isAvailableForSale;
 
   Product(
-      {@required this.productId,
-      @required this.title,
-      @required this.productDescription,
-      @required this.price,
-      @required this.rating,
-      @required this.imageUrl,
-      @required this.images,
-      @required this.isAvailableForSale});
+      {this.productId,
+      this.title,
+      this.productDescription,
+      this.price,
+      this.rating,
+      this.imageUrl,
+      this.images,
+      this.isAvailableForSale});
 
   factory Product.fromJson(Map<String, dynamic> json) {
     var product = Product(
