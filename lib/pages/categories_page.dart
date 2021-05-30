@@ -1,104 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:shop/pages/products_page.dart';
 import 'package:shop/models/category.dart';
+import 'package:shop/models/grid_item.dart';
 import 'package:shop/helpers/constants.dart';
 import 'package:shop/helpers/queries.dart';
 
-class CategoryGridItem extends StatelessWidget {
-  final Category category;
-  CategoryGridItem({
-    this.category,
-  });
+class CategoryGridPage extends StatefulWidget {
+  // final List<Category> categories;
+  // CategoryGridPage({
+  //   this.categories,
+  // });
 
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      child: Padding(
-        padding: EdgeInsets.all(kDefaultPadding / 2),
-        child: Column(
-          children: [
-            Text(
-              category.title,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            Expanded(
-              child: Image.network(category.imageUrl),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  _CategoryGridPageState createState() => _CategoryGridPageState();
 }
 
-class CategoryGrid extends StatefulWidget {
-  final List<Category> categories;
-  CategoryGrid({
-    this.categories,
-  });
-
-  _CategoryGridState createState() => _CategoryGridState();
-}
-
-class _CategoryGridState extends State<CategoryGrid> {
+class _CategoryGridPageState extends State<CategoryGridPage> {
   DataFetch _categoryFetch = DataFetch();
-  Future<List<Category>> categories;
+  Future<List<Category>> categoriesFuture;
 
   @override
   void initState() {
     super.initState();
-    categories = _categoryFetch.loadCategories();
+    categoriesFuture = _categoryFetch.loadCategories();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: kDefaultPadding / 2,
-          right: kDefaultPadding / 2,
-        ),
-        child: FutureBuilder(
-          future: categories,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return _categoriesGridView(snapshot);
-            } else if (snapshot.hasError) {
-              return Text("Error");
-            }
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          },
-        ),
-      ),
-    );
-  }
-
-  _categoriesGridView(snapshot) {
-    return GridView.builder(
-      itemCount: snapshot.data.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: kDefaultPadding / 2,
-        crossAxisSpacing: kDefaultPadding / 2,
-      ),
-      itemBuilder: (context, index) {
-        return CategoryGridItem(
-          category: snapshot.data[index],
-        );
-      },
-    );
-  }
-}
-
-class CategoriesPage extends StatefulWidget {
-  @override
-  _CategoriesPageState createState() => _CategoriesPageState();
-}
-
-class _CategoriesPageState extends State<CategoriesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,16 +41,52 @@ class _CategoriesPageState extends State<CategoriesPage> {
             child: ElevatedButton(
               onPressed: () {
                 Route route = MaterialPageRoute(
-                  builder: (context) => ProductsPage(),
+                  builder: (context) => ProductListPage(),
                 );
                 Navigator.push(context, route);
               },
               child: Text('Все товары'),
             ),
           ),
-          CategoryGrid(),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: kDefaultPadding / 2,
+                right: kDefaultPadding / 2,
+              ),
+              child: FutureBuilder(
+                future: categoriesFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return _categoriesGridView(snapshot);
+                  } else if (snapshot.hasError) {
+                    return Text("Error");
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
+    );
+  }
+
+  Widget _categoriesGridView(snapshot) {
+    return GridView.builder(
+      itemCount: snapshot.data.length,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: kDefaultPadding / 2,
+        crossAxisSpacing: kDefaultPadding / 2,
+      ),
+      itemBuilder: (context, index) {
+        return CategoryGridItem(
+          category: snapshot.data[index],
+        );
+      },
     );
   }
 }
