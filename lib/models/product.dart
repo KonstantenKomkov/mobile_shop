@@ -8,15 +8,16 @@ class Product {
   final List images;
   final int isAvailableForSale;
 
-  Product(
-      {this.productId,
-      this.title,
-      this.productDescription,
-      this.price,
-      this.rating,
-      this.imageUrl,
-      this.images,
-      this.isAvailableForSale});
+  Product({
+    this.productId,
+    this.title,
+    this.productDescription,
+    this.price,
+    this.rating,
+    this.imageUrl,
+    this.images,
+    this.isAvailableForSale,
+  });
 
   factory Product.fromJson(Map<String, dynamic> json) {
     var product = Product(
