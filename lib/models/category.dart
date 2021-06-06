@@ -2,7 +2,7 @@ class Category {
   final int categoryId;
   final String title;
   final String imageUrl;
-  final int hasSubcetegories;
+  final int hasSubcategories;
   final String fullName;
   final String categoryDescription;
 
@@ -10,7 +10,7 @@ class Category {
     this.categoryId,
     this.title,
     this.imageUrl,
-    this.hasSubcetegories,
+    this.hasSubcategories,
     this.fullName,
     this.categoryDescription,
   });
@@ -20,7 +20,7 @@ class Category {
       categoryId: json['categoryId'] as int,
       title: json['title'] as String,
       imageUrl: json['imageUrl'] as String,
-      hasSubcetegories: json['hasSubcetegories'] as int,
+      hasSubcategories: json['hasSubcategories'] as int,
       fullName: json['fullName'] as String,
       categoryDescription: json['categoryDescription'] as String,
     );

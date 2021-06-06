@@ -4,6 +4,7 @@ import 'package:shop/helpers/constants.dart';
 
 class ProductListItem extends StatelessWidget {
   final Product product;
+
   ProductListItem({
     this.product,
   });

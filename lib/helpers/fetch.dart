@@ -7,9 +7,17 @@ class FetchHelper {
   final String path;
   FetchHelper(this.url, this.path);
 
-  //TODO: add optional parameters for request
-  Future<dynamic> getData([int categoryId]) async {
-    var uri = Uri.http(url, path, {'appKey': shopApiKey});
+  Future<dynamic> getData({int categoryId, int parentId}) async {
+    var params = {'appKey': shopApiKey};
+    if (categoryId != null) {
+      params['categoryId'] = categoryId.toString();
+    }
+
+    if (parentId != null) {
+      print('fetch parentId not null and is ${parentId.toString()}');
+      params['parentId'] = parentId.toString();
+    }
+    var uri = Uri.http(url, path, params);
     http.Response response = await http.get(uri);
     if (response.statusCode == 200) {
       try {

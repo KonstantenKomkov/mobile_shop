@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shop/pages/categories_page.dart';
+import 'package:shop/pages/products_page.dart';
 // import 'package:shop/models/menu.dart';
 // import 'package:shop/models/category_list.dart';
 // import 'package:shop/models/product_list.dart';
@@ -22,6 +23,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: CategoryGridPage(),
+      // routes: {
+      //   '/categories': (context) => CategoryGridPage(),
+      //   '/products': (context) => ProductListPage(),
+      // },
     );
   }
 }
