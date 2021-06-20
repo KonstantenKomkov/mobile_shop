@@ -21,6 +21,13 @@ class ProductListItem extends StatelessWidget {
             ),
             Image.network(
               product.imageUrl,
+              errorBuilder: (BuildContext context, Object exception,
+                  StackTrace stackTrace) {
+                return Align(
+                  alignment: Alignment.center,
+                  child: Text('Изображение отсутствует'),
+                );
+              },
             ),
             Container(
               padding: EdgeInsets.only(

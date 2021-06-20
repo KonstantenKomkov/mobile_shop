@@ -32,20 +32,15 @@ class CategoryGridItem extends StatelessWidget {
   }
 
   Widget _buildImage() {
-    var result;
-    try {
-      print('in try');
-      result = Image.network(
-        category.imageUrl,
-        errorBuilder:
-            (BuildContext context, Object exception, StackTrace stackTrace) {
-          print('In errorBuilder!');
-          return Text('😢');
-        },
-      );
-    } catch (e) {
-      result = Text('Ошибка $e');
-    }
-    return result;
+    return Image.network(
+      category.imageUrl,
+      errorBuilder:
+          (BuildContext context, Object exception, StackTrace stackTrace) {
+        return Align(
+          alignment: Alignment.center,
+          child: Text('Изображение отсутствует'),
+        );
+      },
+    );
   }
 }
